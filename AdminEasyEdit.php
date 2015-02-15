@@ -51,7 +51,7 @@ class AdminEasyEdit extends SC_Plugin_Base {
         // ファイルのコピー
         // memo: plugin用HTML_dirにコピーするのでuninnstall時には削除必要ない？
         if(!file_exists(PLUGIN_HTML_REALDIR . $arrPlugin['plugin_code'] . "/js"))mkdir(PLUGIN_HTML_REALDIR . $arrPlugin['plugin_code']. "/js");
-        if(copy(PLUGIN_UPLOAD_REALDIR . $arrPlugin['plugin_code'] . "/html/js/jquery.exautofocus-0.1.0-min.js", PLUGIN_HTML_REALDIR . $arrPlugin['plugin_code'] . "/js/jquery.exautofocus-0.1.0-min.js") === false) {
+        if(copy(PLUGIN_UPLOAD_REALDIR . $arrPlugin['plugin_code'] . "/html/js/jquery.extablefocus-0.1.0.js", PLUGIN_HTML_REALDIR . $arrPlugin['plugin_code'] . "/js/jquery.extablefocus-0.1.0.js") === false) {
             SC_Utils_Ex::sfDispSiteError(FREE_ERROR_MSG, '', false, PLUGIN_UPLOAD_REALDIR . PLUGIN_HTML_REALDIR . ' に書き込めません。パーミッションをご確認ください。');
         }
     }
@@ -147,8 +147,14 @@ class AdminEasyEdit extends SC_Plugin_Base {
             case DEVICE_TYPE_ADMIN:
             default:
                 $template_dir .= "admin/";
-                // CSS読み込み
-                // $objTransform->select("head")->appendChild('<link rel="stylesheet" href="' . ROOT_URLPATH . 'plugin/ShippingAdmin/css/plg_ShippingAdmin.css" type="text/css" media="all">');
+                // JS読み込み
+                // jQuery1.4.2でのみ動作するのでオーバーライドする...
+                if (strpos($filename, "products/product_class.tpl") !== false) {
+                    $objTransform->select("table.list")->insertAfter(file_get_contents($template_dir . "script_tag.tpl"));
+                }
+                // elseif (strpos($filename, "basis/delivery_input.tpl") !== false) {
+                //     $objTransform->select("table")->insertAfter(file_get_contents($template_dir . "script_tag.tpl"));
+                // }
                 break;
         }
         $source = $objTransform->getHTML();
