@@ -150,11 +150,10 @@ class AdminEasyEdit extends SC_Plugin_Base {
                 // JS読み込み
                 // jQuery1.4.2でのみ動作するのでオーバーライドする...
                 if (strpos($filename, "products/product_class.tpl") !== false) {
-                    $objTransform->select("table.list")->insertAfter(file_get_contents($template_dir . "script_tag.tpl"));
+                    $objTransform->select("table.list")->insertAfter(file_get_contents($template_dir . "products/product_class.tpl"));
+                } elseif (strpos($filename, "basis/delivery_input.tpl") !== false) {
+                    $objTransform->select("table", 4)->replaceElement(file_get_contents($template_dir . "basis/delivery_input.tpl"));
                 }
-                // elseif (strpos($filename, "basis/delivery_input.tpl") !== false) {
-                //     $objTransform->select("table")->insertAfter(file_get_contents($template_dir . "script_tag.tpl"));
-                // }
                 break;
         }
         $source = $objTransform->getHTML();

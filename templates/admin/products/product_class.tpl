@@ -2,7 +2,7 @@
 <script src="<!--{$smarty.const.ROOT_URLPATH}-->plugin/AdminEasyEdit/js/jquery.extablefocus-0.1.0.js"></script>
 <script>
     $(function(){
-        $("table").exTableFocus({
+        $("table.list").exTableFocus({
             overrideCrControl : true,
             verticalCrControl : true
         });
