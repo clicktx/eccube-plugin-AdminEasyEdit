@@ -7,4 +7,12 @@
             verticalCrControl : true
         });
     });
+    //jQuery2.1.1で動作しないためoverride
+    eccube.checkAllBox = function(input, selector) {
+        if ($(input).is(':checked')) {
+            $(selector).attr('checked', true);
+        } else {
+            $(selector).attr('checked', false);
+        }
+    };
 </script>
