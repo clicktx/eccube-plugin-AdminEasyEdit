@@ -53,6 +53,7 @@ class plugin_info {
      * ここで宣言することで、インストール時にdtb_plugin_hoolpointsに登録され、register関数を書かずにフックポイントでの介入が可能です。*/
     // static $HOOK_POINTS = array(
     // );
+        static $HOOK_POINTS = "prefilterTransform";
 
     /** ライセンス */
     static $LICENSE        = "LGPL";
