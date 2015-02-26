@@ -152,7 +152,7 @@ class AdminEasyEdit extends SC_Plugin_Base {
                 if (strpos($filename, "products/product_class.tpl") !== false) {
                     $objTransform->select("table.list")->insertAfter(file_get_contents($template_dir . "products/product_class.tpl"));
                 } elseif (strpos($filename, "basis/delivery_input.tpl") !== false) {
-                    $objTransform->select("table", 4)->replaceElement(file_get_contents($template_dir . "basis/delivery_input.tpl"));
+                    $objTransform->select("table", 3)->replaceElement(file_get_contents($template_dir . "basis/delivery_input.tpl"));
                 }
                 break;
         }
